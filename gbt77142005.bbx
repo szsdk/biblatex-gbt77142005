@@ -140,6 +140,7 @@
 \DeclareFieldFormat[inbook, inproceedings, incollection, article]%
   {title}{#1}
 \DeclareFieldFormat*{type}{\mkbibbrackets{#1}}
+\DeclareListFormat*{organization}{#1}
 \DeclareFieldFormat*{number}{\mkbibparens{#1}}
 \DeclareFieldFormat[patent]{number}{#1}
 \renewbibmacro*{title}{\iffieldundef{title}{}{\printfield{title}}}
@@ -148,6 +149,14 @@
 \newbibmacro*{cein:}{\printtext{\bbx@cnin}}
 \newcommand*{\bbx@byspace}[1]{%
 	\ifnumgreater{\value{#1}}{\value{maxnames}}{}{\addspace}%
+}
+
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \step[fieldsource=bookorganization,fieldtarget=usera]
+    }
+  }
 }
 
 \newbibmacro*{cebyauthor}{%
@@ -176,7 +185,9 @@
 \newbibmacro*{author+others}{%
 	\ifthenelse%
 	{\ifnameundef{author} \and \ifnameundef{editor} \and \ifnameundef{translator}}%
-	{}%
+  {\iflistundef{organization}%
+    {}%
+    {\printlist{organization}}}%
 	{%
 		\ifthenelse{\ifnameundef{editor} \and \ifnameundef{translator}}%
 		{\printnames{author}}%
@@ -265,7 +276,8 @@
 	\newblock
 	\usebibmacro{cein:}%
 	\newblock
-	\printnames{bookauthor}\setunit*{\bbx@ceperiod}%
+  \iffieldundef{usera}{\printnames{bookauthor}}{\printfield{usera}}%
+  \setunit*{\bbx@ceperiod}%
 	\newblock
 	\printfield{booktitle}\setunit{\bbx@ceperiod}%
 	\newblock
