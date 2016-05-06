@@ -1,0 +1,23 @@
+\documentclass{ctexart}
+
+\usepackage[
+backend = biber, bibstyle=casper,utf8, citestyle=casper,
+  giveninits = true, sortgiveninits = true
+]{biblatex}
+
+\addbibresource{ref.bib}
+\addbibresource{readme.bib}
+\renewcommand{\bibfont}{\zihao{5}}
+%注意，这里一定要两个大括号，里面的那个大括号用于长标题在封面中的断行
+\title{biblatex}
+\author{沈周}
+
+\begin{document}
+\maketitle
+\section{第一节}
+\subsection{第一条}
+\[\mathcal{X}\]\cite{latextutorial}\cite{latextutorial2}
+你好，世界%\cite{a6-3}
+\nocite{*}
+\printbibliography[title={参考文献},heading=bibintoc]
+\end{document}
