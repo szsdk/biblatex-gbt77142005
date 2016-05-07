@@ -1,36 +1,15 @@
-% Casper Ti. Vector's biblatex style
-%
-% Copyright (c) 2012-2016 Casper Ti. Vector
-%
-% This work may be distributed and/or modified under the conditions of the
-% LaTeX Project Public License, either version 1.3 of this license or (at
-% your option) any later version.
-% The latest version of this license is in
-%   http://www.latex-project.org/lppl.txt
-% and version 1.3 or later is part of all distributions of LaTeX version
-% 2005/12/01 or later.
-%
-% This work has the LPPL maintenance status `maintained'.
-% The current maintainer of this work is Casper Ti. Vector.
-%
-% This work consists of the following files:
-%   gbt77142005.bbx
-%   gbt77142005.cbx
-%   biblatex-gbt77142005-gbk.def
-%   biblatex-gbt77142005-utf8.def
-
-\ProvidesFile{gbt77142005.bbx}%
+\ProvidesFile{gbt77142005_authoryear.bbx}%
 	[2016/03/31 v0.2.5 Casper Ti. Vector's biblatex bibliography style]
 
 \RequireBiber[3]
-\RequireBibliographyStyle{numeric}
+\RequireBibliographyStyle{authoryear}
 \setlength\bibitemsep{0pt}
 \newtoggle{bbx:gbk}
 \DeclareBibliographyOption{utf8}[true]{\togglefalse{bbx:gbk}}
 \DeclareBibliographyOption{gbk}[true]{\toggletrue{bbx:gbk}}
 \ExecuteBibliographyOptions{
 	alldates = iso8601, gbk, defernumbers = true,
-	sorting = none, minnames = 3, minitems = 3
+  sorting = none, minbibnames = 3, minitems = 3
 }
 \AtEndOfPackage{%
 	\iftoggle{bbx:gbk}{
@@ -51,7 +30,7 @@
       {\mkbibnameprefix{\MakeCapital{#3}}\isdot}
       {\mkbibnameprefix{#3}\isdot}%
       \ifprefchar{}{\bibnamedelimc}}%
-    \MakeUppercase{#1}\isdot
+    \MakeUppercase{#2}\isdot
     \ifempty{#2}{}{\revsdnamepunct\bibnamedelimd\MakeUppercase{#2}\isdot}%
     \ifempty{#4}{}{\bibnamedelimd\mkbibnameaffix{#4}\isdot}}
    {\usebibmacro{name:delim}{#1}%
@@ -60,7 +39,7 @@
      \ifempty{#2#3}{}{\revsdnamepunct}%
      \ifempty{#2}{}{\bibnamedelimd\MakeUppercase{#2}\isdot}%
      \ifempty{#3}{}{\bibnamedelimd\mkbibnameprefix{#3}\isdot}%
-     \ifempty{#4}{}{,\bibnamedelimd\mkbibnameaffix{#4}\isdot}}}
+     \ifempty{#5}{}{,\bibnamedelimd\mkbibnameaffix{#4}\isdot}}}
 
 \DeclareNameFormat{prefix-family-given-suffix}{%
   \nameparts{#1}%
@@ -201,10 +180,9 @@
 	\ifthenelse{\iffieldundef{month} \and \iffieldundef{day}}%
 	{\printfield{year}}{\printdate}%
 }
-\newbibmacro*{(year+volume+number)/date}{%
+\newbibmacro*{(volume+number)/date}{%
   \ifthenelse{\iffieldundef{month} \and \iffieldundef{day}}%
   {%
-    \printfield{year}\setunit*{\bbx@cecomma}%
     \printfield{volume}\setunit{}%
   }{\printdate}%
   \usebibmacro{number}%
@@ -217,11 +195,12 @@
 }
 
 \DeclareBibliographyDriver{online}{%
-	\usebibmacro{bibindex}%
-	\newblock
+	%\usebibmacro{bibindex}%
+	%\newblock
 	\usebibmacro{author+others}\setunit{\bbx@ceperiod}%
 	\newblock
   \usebibmacro{title}%
+	\newblock
   \usebibmacro{type}.%
 	\newblock
 	\printlist{location}\setunit*{\bbx@cecolon}%
@@ -237,12 +216,13 @@
 }
 
 \DeclareBibliographyDriver{book}{%
-	\usebibmacro{bibindex}%
-	\newblock
+	%\usebibmacro{bibindex}%
+	%\newblock
 	\usebibmacro{author+others}\setunit{\bbx@ceperiod}%
+  \usebibmacro{date+extrayear}\setunit{\bbx@ceperiod}%
 	\newblock
-	%\usebibmacro{title}\setunit*{\addspace}%
   \usebibmacro{title}%
+	\newblock
 	\usebibmacro{type}\setunit{\bbx@ceperiod}%
   \printfield{edition}\setunit{\bbx@ceperiod}%
 	\newblock
@@ -252,7 +232,8 @@
   \iflistundef{publisher}%
   {\bbx@cegen{\printtext{[出版者不详]}}{\printtext{[s.n.]}}}%
   {\printlist{publisher}}\setunit{\bbx@cecomma}%
-	\usebibmacro{year/date}\setunit*{\bbx@cecolon}%
+	%\usebibmacro{year/date}\setunit*{\bbx@cecolon}%
+	\usebibmacro{date}\setunit*{\bbx@cecolon}%
   \printfield{pages}%\setunit{\bbx@ceperiod}%
 	\newblock
   \usebibmacro{urldate}\setunit{\bbx@ceperiod}
@@ -266,8 +247,10 @@
 	\usebibmacro{bibindex}%
 	\newblock
 	\usebibmacro{author+others}\setunit{\bbx@ceperiod}%
+  \usebibmacro{date+extrayear}\setunit{\bbx@ceperiod}%
 	\newblock
 	\usebibmacro{title}\setunit*{\bbx@cespace}%
+	\newblock
 	\usebibmacro{type}%
 	\newblock
 	\usebibmacro{cein:}%
@@ -293,11 +276,13 @@
 	\usebibmacro{bibindex}%
 	\newblock
 	\usebibmacro{author+others}\setunit{\bbx@ceperiod}%
+  \usebibmacro{date+extrayear}\setunit{\bbx@ceperiod}%
 	\newblock
 	\usebibmacro{journaltitle/title}\setunit*{\addspace}%
+	\newblock
 	\usebibmacro{type}\setunit{\bbx@ceperiod}%
 	\newblock
-	\usebibmacro{(year+volume+number)/date}\setunit{\bbx@ceperiod}%
+	\usebibmacro{(volume+number)/date}\setunit{\bbx@ceperiod}%
 	\newblock
 	\printlist{location}\setunit*{\bbx@cecolon}%
 	\printlist{publisher}\setunit{\bbx@ceperiod}%
@@ -310,38 +295,41 @@
 
 \providebibmacro*{date+extrayear}{}
 %
-  \renewbibmacro*{date+extrayear}{%
-    \iffieldundef{\thefield{datelabelsource}year}
-      {}
-      {\printtext[parens]{%
-         \printfield{\thefield{datelabelsource}year}%
-         \printfield{extrayear}}}}%
-  \renewbibmacro*{date}{%
-    \iffieldundef{month}
-      {}
-      {\printdate}}%
-  \renewbibmacro*{issue+date}{%
-    \ifboolexpr{
-      test {\iffieldundef{issue}}
-      and
-      test {\iffieldundef{month}}
-    }
-      {}
-      {\printtext[parens]{%
-         \printfield{issue}%
-         \setunit*{\addspace}%
-         \printdate}}%
-    \newunit}
+\renewbibmacro*{date+extrayear}{%
+  \iffieldundef{\thefield{datelabelsource}year}
+  {}
+  {\printtext{%
+      \printfield{\thefield{datelabelsource}year}%
+      \printfield{extrayear}}}}%
+\renewbibmacro*{date}{%
+  \iffieldundef{month}
+  {}
+  {\printdate}}%
+\renewbibmacro*{issue+date}{%
+  \ifboolexpr{
+    test {\iffieldundef{issue}}
+    and
+    test {\iffieldundef{month}}
+  }
+  {}
+  {\printtext[parens]{%
+      \printfield{issue}%
+      \setunit*{\addspace}%
+      \printdate}}%
+  \newunit}
+
 \DeclareBibliographyDriver{article}{%
-	\usebibmacro{bibindex}%
-	\newblock
+  \usebibmacro{bibindex}%
+  \newblock
 	\printnames{author}\setunit{\bbx@ceperiod}%
+  \usebibmacro{date+extrayear}\setunit{\bbx@ceperiod}%
 	\newblock
 	\usebibmacro{title}\setunit*{\bbx@cespace}%
+	\newblock
 	\usebibmacro{type}\setunit{\bbx@ceperiod}%
 	\newblock
 	\printfield{journaltitle}\setunit*{\bbx@cecomma}%
-	\usebibmacro{(year+volume+number)/date}\setunit{\bbx@cecolon}%
+	\usebibmacro{(volume+number)/date}\setunit{\bbx@cecolon}%
 	\printfield{pages}\setunit{\bbx@ceperiod}%
 	\newblock
   \usebibmacro{urldate}\setunit*{\bbx@ceperiod}%
@@ -355,6 +343,7 @@
 	\usebibmacro{bibindex}%
 	\newblock
 	\usebibmacro{author}\setunit{\bbx@ceperiod}%
+  \usebibmacro{date+extrayear}\setunit{\bbx@ceperiod}%
 	\newblock
 	\usebibmacro{title}\setunit*{\addspace}%
 	\newblock
@@ -400,6 +389,7 @@
 	\sort{
 		\field{sortname}
 		\field{author}
+    \field{usera}
 		\field{editor}
 		\field{translator}
 		\field{sorttitle}
@@ -424,6 +414,7 @@
 	\sort{
 		\field{sortname}
 		\field{author}
+    \field{organization}
 		\field{editor}
 		\field{translator}
 		\field{sorttitle}
@@ -453,6 +444,10 @@
 		\map{
 			\step[fieldset = userf, fieldvalue = {en}]
 		}
+    \map{
+      \step[fieldsource = userf, match = {en}, fieldset=organization,fieldvalue={Anon}]
+      \step[fieldsource = userf, match = {zh}, fieldset=organization,fieldvalue={佚名}]
+    }
 	}
 }
 
