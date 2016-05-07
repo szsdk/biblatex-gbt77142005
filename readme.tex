@@ -17,7 +17,26 @@ backend = biber, style=gbt77142005 ,utf8,
 \begin{minted}{bash}
 texdoc caspervector
 \end{minted}
-查看其帮助文档。
+查看其帮助文档。调用方法如下：
+\begin{minted}[breaklines,frame=single]{latex}
+\usepackage[
+backend = biber, style=gbt77142005 ,utf8,
+  giveninits = true, sortgiveninits = true
+]{biblatex}
+\end{minted}
+\subsection{特别说明}
+对于作者是组织的情况，组织名是区分大小写的，所以添加了两个字段organization和
+bookorganization，分别对应author和bookauthor。比如
+\begin{minted}[breaklines,frame=single]{bibtex}
+@online{6-2,
+    organization= {{Online Computer Library Center, Inc.}},
+    title = {History of OCLC},
+    type = {EB/OL},
+    url = {http://www.oclc.org/about/history/default.htm},
+    urldate = {2000-01-08},
+    language = {english},
+}
+\end{minted}
 \nocite{*}
 \printbibliography[title={参考文献},heading=bibintoc]
 \end{document}

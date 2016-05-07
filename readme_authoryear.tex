@@ -11,7 +11,7 @@ giveninits = true, sortgiveninits = true, sorting=centy
 
 \addbibresource{ref.bib}
 \renewcommand{\bibfont}{\zihao{5}}
-\title{biblatex-gbt77142005}
+\title{biblatex-gbt77142005(authoryear)}
 \author{沈周}
 
 \begin{document}
@@ -22,12 +22,48 @@ giveninits = true, sortgiveninits = true, sorting=centy
 texdoc caspervector
 \end{minted}
 查看其帮助文档。
-\section{引用测试}
+调用方法如下：
+\begin{minted}[breaklines,frame=single]{latex}
+\usepackage[
+backend = biber, style=gbt77142005_authoryear ,utf8,
+giveninits = true, sortgiveninits = true, sorting=centy
+]{biblatex}
+\end{minted}
+\subsection{特别说明}
+对于作者是组织的情况，组织名是区分大小写的，所以添加了两个字段organization和
+bookorganization，分别对应author和bookauthor。比如
+\begin{minted}[breaklines,frame=single]{bibtex}
+@online{6-2,
+    organization= {{Online Computer Library Center, Inc.}},
+    title = {History of OCLC},
+    type = {EB/OL},
+    url = {http://www.oclc.org/about/history/default.htm},
+    urldate = {2000-01-08},
+    language = {english},
+}
+\end{minted}
+\section{引用方法}
 \begin{itemize}
-    \item 同作者同年测试：\cite{2-5}，\cite{2-5_2}。
-    \item 多作者引用（加页码）：\cite[][23]{a5-3} \cite{a1-2}
-    \item 同一作品多次引用（加页码）：\cite[][23]{a5-3}\cite[][32]{a5-3}
-    \item 年份引用：\yearcite[][23]{2-5}\yearcite[][32]{a5-3}
+    \item 同作者同年引用测试：
+        \begin{minted}[breaklines,frame=single]{latex}
+\cite{2-5}，\cite{2-5_2}
+        \end{minted}
+        结果：\cite{2-5}，\cite{2-5_2}
+    \item 多作者引用代码：
+        \begin{minted}[breaklines,frame=single]{latex}
+\cite{a5-3} \cite{a1-2}
+        \end{minted}
+        结果：\cite{a5-3} \cite{a1-2}
+    \item 同一作品多次引用（加页码）代码：
+        \begin{minted}[breaklines,frame=single]{latex}
+\cite[][23]{a5-3}\cite[][32]{a5-3}
+        \end{minted}
+        结果：\cite[][23]{a5-3}\cite[][32]{a5-3}
+    \item 年份引用代码：
+        \begin{minted}[breaklines,frame=single]{latex}
+\yearcite[][23]{2-5}\yearcite[][32]{a5-3}
+        \end{minted}
+        结果：\yearcite[][23]{2-5}\yearcite[][32]{a5-3}
 \end{itemize}
 \nocite{*}
 \printbibliography[title={参考文献},heading=bibintoc]

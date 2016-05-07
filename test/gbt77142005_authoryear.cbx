@@ -1,0 +1,35 @@
+\ProvidesFile{gbt77142005_authoryear.cbx}
+[\abx@cbxid]
+
+\RequireCitationStyle{authoryear}
+\ExecuteBibliographyOptions{maxcitenames=1, labeldate,uniquename,uniquelist=false,autocite=inline}
+
+\newcommand*{\cbx@mksupers}[1]{\mkbibsuperscript{#1}}
+\renewcommand*{\nameyeardelim}{\addcomma\space}
+
+\DeclareCiteCommand{\cite}
+  {\usebibmacro{prenote}}
+  {（\usebibmacro{citeindex}%
+    \usebibmacro{cite}）}
+  {\multicitedelim}
+  {\iffieldundef{postnote}{}{\cbx@mksupers{\thefield{postnote}}}}
+
+\DeclareCiteCommand*{\cite}
+  {\usebibmacro{prenote}}
+  {（\usebibmacro{citeindex}%
+    \usebibmacro{citeyear}）}
+  {\let\multicitedelim=\supercitedelim}
+  {\iffieldundef{postnote}{}{\cbx@mksupers{\thefield{postnote}}}}
+  %{\usebibmacro{postnote}}
+
+\newbibmacro*{yearcite}{%
+  \iffieldundef{shorthand}
+    {\usebibmacro{cite:labelyear+extrayear}}
+    {\usebibmacro{cite:shorthand}}}
+
+\DeclareCiteCommand{\yearcite}
+  {\usebibmacro{prenote}}
+  {（\usebibmacro{citeindex}%
+    \usebibmacro{yearcite}）}
+  {\multicitedelim}
+  {\iffieldundef{postnote}{}{\cbx@mksupers{\thefield{postnote}}}}
