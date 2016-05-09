@@ -3,10 +3,10 @@
 
 \newcommand*\bbx@cnldquot{“}
 \newcommand*\bbx@cnrdquot{”}
-\newcommand*\bbx@cncomma{,}
-\newcommand*\bbx@cnscolon{;}
+\newcommand*\bbx@cncomma{，}
+\newcommand*\bbx@cnscolon{；}
 \newcommand*\bbx@cncolon{:}
-\newcommand*\bbx@cnperiod{.}
+\newcommand*\bbx@cnperiod{．}
 \newcommand*\bbx@cnetal{等}
 \newcommand*\bbx@cnauth{著}
 \newcommand*\bbx@cnedit{编}

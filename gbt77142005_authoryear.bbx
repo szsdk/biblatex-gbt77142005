@@ -87,6 +87,12 @@
   \renewcommand*{\finalandcomma}{\bbx@cegen{\bbx@cncomma}{\bbx@cecomma}}%
 }
 
+\DeclareFieldFormat{doi}{%
+  \printtext{DOI}\addcolon\space
+  \ifhyperref
+    {\href{http://dx.doi.org/#1}{\nolinkurl{#1}}}
+    {\nolinkurl{#1}}}
+
 % The alternative settings in comments can be used in case a really plain style
 % (without quotes, italic and bold) is demanded; be prepared that the style
 % might look really ugly.
@@ -209,7 +215,8 @@
 	\printfield{pages}%\setunit{\bbx@ceperiod}%
 	\newblock
   \usebibmacro{urldate}\setunit{\bbx@ceperiod}
-  \printfield{url}\setunit{\bbx@ceperiod}%
+  \printfield{url}\setunit*{\bbx@ceperiod}%
+  \printfield{doi}\setunit*{\bbx@ceperiod}%
   \usebibmacro{finentry}%
 	\newblock
 	\printfield{addendum}%
@@ -237,7 +244,8 @@
   \printfield{pages}%\setunit{\bbx@ceperiod}%
 	\newblock
   \usebibmacro{urldate}\setunit{\bbx@ceperiod}
-  \printfield{url}\setunit{\bbx@ceperiod}%
+  \printfield{url}\setunit*{\bbx@ceperiod}%
+  \printfield{doi}\setunit*{\bbx@ceperiod}%
   \usebibmacro{finentry}%
 	\newblock
 	\printfield{addendum}%
@@ -266,7 +274,8 @@
 	\printfield{pages}\setunit{\bbx@ceperiod}%
 	\newblock
   \usebibmacro{urldate}\setunit*{\bbx@ceperiod}%
-	\printfield{url}%
+	\printfield{url}\setunit*{\bbx@ceperiod}%
+  \printfield{doi}\setunit*{\bbx@ceperiod}%
 	\usebibmacro{finentry}%
 	\newblock
 	\printfield{addendum}%
@@ -287,8 +296,9 @@
 	\printlist{location}\setunit*{\bbx@cecolon}%
 	\printlist{publisher}\setunit{\bbx@ceperiod}%
 	\newblock
-	\printfield{url}\setunit*{\bbx@cecomma}%
 	\usebibmacro{urldate}\usebibmacro{finentry}%
+  \printfield{url}\setunit*{\bbx@ceperiod}%
+  \printfield{doi}\setunit*{\bbx@ceperiod}%
 	\newblock
 	\printfield{addendum}%
 }
@@ -333,7 +343,8 @@
 	\printfield{pages}\setunit{\bbx@ceperiod}%
 	\newblock
   \usebibmacro{urldate}\setunit*{\bbx@ceperiod}%
-	\printfield{url}\setunit*{\bbx@cecomma}%
+  \printfield{url}\setunit*{\bbx@ceperiod}%
+  \printfield{doi}\setunit*{\bbx@ceperiod}%
 	\usebibmacro{finentry}%
 	\newblock
 	\printfield{addendum}%
@@ -353,9 +364,10 @@
 	\usebibmacro{type}\setunit{\bbx@ceperiod}%
 	\newblock
   \usebibmacro{year/date}\setunit*{\addspace}%
-  \usebibmacro{urldate}\setunit{\bbx@ceperiod}%
 	\newblock
-	\printfield{url}%
+  \usebibmacro{urldate}\setunit{\bbx@ceperiod}%
+	\printfield{url}\setunit*{\bbx@ceperiod}%
+  \printfield{doi}\setunit*{\bbx@ceperiod}%
 	\usebibmacro{finentry}%
 	\newblock
 	\printfield{addendum}%
