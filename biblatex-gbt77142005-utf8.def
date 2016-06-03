@@ -14,5 +14,7 @@
 \newcommand*\bbx@cnin{//}
 \newcommand*\bbx@cnretr{检索于}
 \newcommand*\bbx@cnbib{参考文献}
+\newcommand*\bbx@cnsl{出版地不详}
+\newcommand*\bbx@cnsn{出版者不详}
 
 % vim:ft=tex:ts=2:sw=2

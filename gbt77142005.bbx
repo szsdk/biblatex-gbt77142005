@@ -233,10 +233,10 @@
   \printfield{edition}\setunit{\bbx@ceperiod}%
 	\newblock
   \iflistundef{location}%
-  {\bbx@cegen{[出版地不详]}{[S.l]}}%
+  {\bbx@cegen{[\bbx@cnsl]}{[S.l]}}%
   {\printlist{location}}\setunit{\bbx@cecolon}%
   \iflistundef{publisher}%
-  {\bbx@cegen{\printtext{[出版者不详]}}{\printtext{[s.n.]}}}%
+  {\bbx@cegen{\printtext{[\bbx@cnsn]}}{\printtext{[s.n.]}}}%
   {\printlist{publisher}}\setunit{\bbx@cecomma}%
 	\usebibmacro{year/date}\setunit*{\bbx@cecolon}%
   \printfield{pages}%\setunit{\bbx@ceperiod}%
