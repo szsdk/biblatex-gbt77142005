@@ -25,21 +25,21 @@
   \ifuseprefix
   {\usebibmacro{name:delim}{#3#1}%
     \usebibmacro{name:hook}{#3#1}%
-    \ifempty{#3}{}{%
+    \blx@xifempty{#3}{}{%
       \ifcapital
       {\mkbibnameprefix{\MakeCapital{#3}}\isdot}
       {\mkbibnameprefix{#3}\isdot}%
       \ifprefchar{}{\bibnamedelimc}}%
     \MakeUppercase{#2}\isdot
-    \ifempty{#2}{}{\revsdnamepunct\bibnamedelimd\MakeUppercase{#2}\isdot}%
-    \ifempty{#4}{}{\bibnamedelimd\mkbibnameaffix{#4}\isdot}}
+    \blx@xifempty{#2}{}{\revsdnamepunct\bibnamedelimd\MakeUppercase{#2}\isdot}%
+    \blx@xifempty{#4}{}{\bibnamedelimd\mkbibnameaffix{#4}\isdot}}
    {\usebibmacro{name:delim}{#1}%
      \usebibmacro{name:hook}{#1}%
      \MakeUppercase{#1}\isdot
-     \ifempty{#2#3}{}{\revsdnamepunct}%
-     \ifempty{#2}{}{\bibnamedelimd\MakeUppercase{#2}\isdot}%
-     \ifempty{#3}{}{\bibnamedelimd\mkbibnameprefix{#3}\isdot}%
-     \ifempty{#4}{}{,\bibnamedelimd\mkbibnameaffix{#4}\isdot}}}
+     \blx@xifempty{#2#3}{}{\revsdnamepunct}%
+     \blx@xifempty{#2}{}{\bibnamedelimd\MakeUppercase{#2}\isdot}%
+     \blx@xifempty{#3}{}{\bibnamedelimd\mkbibnameprefix{#3}\isdot}%
+     \blx@xifempty{#4}{}{,\bibnamedelimd\mkbibnameaffix{#4}\isdot}}}
 
 \DeclareNameFormat{prefix-family-given-suffix}{%
   \nameparts{#1}%
